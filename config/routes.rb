@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'user/index'
 
+
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   #root 'welcome#index'
-  root 'buildings#test' 
+  root 'home#index' 
 
   post '/test_input_helper', to: 'buildings#test_input_helper', as: 'blahy'
 

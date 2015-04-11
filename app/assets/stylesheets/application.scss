@@ -1,0 +1,115 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+*= require_self
+*= require_tree .
+*/
+
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	margin-top: 0;
+}
+.navbar-default {
+	background-color: white;
+
+}
+
+nav.navbar.navbar-default{
+	margin-bottom: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+	font-family: 'Montserrat', sans-serif;
+	color: black;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 32px;
+
+}
+
+
+
+ul.nav  > li > a {
+	color: white;
+	font-family: 'Sanchez', serif;
+}
+
+a.navbar-brand.navItem {
+	color: white;
+	font-family: 'Sanchez', serif;
+}
+
+
+
+ul.nav  > li > a {
+	color: black;
+
+}
+
+a.navbar-brand.navItem {
+	color: black;
+
+}
+
+#landingPage {
+	background-image: image_url('computer.jpeg');
+	height: 100%;
+	width: 100%;
+}
+
+.landingPageText {
+	color: white;
+	margin: 0 auto;
+	max-width: 420px;
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+div.landingPageText h1 {
+	text-align: center;
+}
+
+button.signupButton {
+	background-color: #EB3E4D;
+	border: none; 
+	border-radius: 3px;
+	margin: 0 auto;
+	display: block;
+	padding: 5px;
+	margin-top: 10px;
+
+}
+
+#signInNav {
+	background-color: #EB3E4D;
+	color: white;
+	height: 20px;
+	padding: 8px;
+	border-radius: 3px;
+
+
+}
+
+ 
