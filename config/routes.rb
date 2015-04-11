@@ -13,6 +13,22 @@ Rails.application.routes.draw do
 
   post '/test_input_helper', to: 'buildings#test_input_helper', as: 'blahy'
 
+  get 'user/create', to: 'user#create'
+
+  post 'user/create_helper', to: 'user#create_helper'
+
+  post 'user/create_helper', to: 'user#create_helper'
+
+  get 'user/calendar', to: 'user#calendar'
+
+
+
+  #get 'user/create', to: 'user#index'
+
+  #get 'sub_keddits/:id1/forums', to: 'forums#list_of_forums'
+
+
+
   #post '/official_creation_of_sub_keddit', to: 'sub_keddits#create', as: 'create_sub_keddit'
 
   # Example of regular route:

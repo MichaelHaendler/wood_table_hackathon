@@ -13,13 +13,13 @@ class BuildingsController < ApplicationController
 	
 	def test_input_helper
 
-		p "getting into test_input_helper!!!!!!!!!!!!!!!!!"
+		# p "getting into test_input_helper!!!!!!!!!!!!!!!!!"
 
-		p "input was: #{params[:data]}"
+		# p "input was: #{params[:data]}"
 
-		p "input was: #{params[:street_name]}"
+		# p "input was: #{params[:street_name]}"
 
-		p "input was: #{params[:house_number]}"
+		# p "input was: #{params[:house_number]}"
 
 		#post = Building.find(1).facility_name + "----" + params[:data]
 
