@@ -50,31 +50,14 @@ function getData(){
         console.log("successfully got into success");
         console.log(data.post);
 
-// facility_name: "Project Hope", 
-// building_num: 550, 
-// street_name: "Dudley", 
-// street_type: "Street", 
-// city_name: "Roxbury", 
-// state_name: "MA", 
-// zip_code: "02119",
-// phone_number: "617-442-1880", 
-// av_land: 624400, 
-// av_bldg: 961600, 
-// av_total: 1586000, 
-// land_sf: 13427,
-// yr_built: 2005, 
-// gross_area:  19448, 
-// living_area: 15584, 
-// num_floors: 4, 
-// structure_class: "C", 
-// location: "(42.359400000, -71.058700001)"
+		$("#final_output").empty();
 
 		var temp = "<li> - facilities name: " + data.post.facility_name + "</li>";
 
 		$("#final_output").append(temp);
 
 
-		var temp = "<li> - building number: " + data.post.building_num + "</li>";
+		var temp = "<li> - address: " + data.post.building_num + "</li>";
 
 		$("#final_output").append(temp);
 
@@ -86,7 +69,7 @@ function getData(){
 
 		$("#final_output").append(temp);
 
-		var temp = "<li> - state_name: " + data.post.state_name + "</li>";
+		var temp = "<li> - state name: " + data.post.state_name + "</li>";
 
 		$("#final_output").append(temp);	
 
@@ -98,36 +81,36 @@ function getData(){
 
 		$("#final_output").append(temp);
 
-		var temp = "<li> - av_land: " + data.post.av_land + "</li>";
+		var temp = "<li> - land value: " + data.post.av_land + "</li>";
 
 		$("#final_output").append(temp);
 
-		var temp = "<li> - av_bldg: " + data.post.av_bldg + "</li>";
-
-		$("#final_output").append(temp);
-
-
-		var temp = "<li> - av_total: " + data.post.av_total + "</li>";
+		var temp = "<li> - building value: " + data.post.av_bldg + "</li>";
 
 		$("#final_output").append(temp);
 
 
-		var temp = "<li> - land_sf: " + data.post.land_sf + "</li>";
+		var temp = "<li> - total land + building: " + data.post.av_total + "</li>";
 
 		$("#final_output").append(temp);
 
 
-		var temp = "<li> - yr_built: " + data.post.yr_built + "</li>";
+		var temp = "<li> - land square footage: " + data.post.land_sf + "</li>";
 
 		$("#final_output").append(temp);
 
 
-		var temp = "<li> - gross_area: " + data.post.gross_area + "</li>";
+		var temp = "<li> - year built: " + data.post.yr_built + "</li>";
 
 		$("#final_output").append(temp);
 
 
-		var temp = "<li> - living_area: " + data.post.living_area + "</li>";
+		var temp = "<li> - total building area: " + data.post.gross_area + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - total livable area: " + data.post.living_area + "</li>";
 
 		$("#final_output").append(temp);
 

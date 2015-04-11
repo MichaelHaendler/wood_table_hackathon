@@ -1,0 +1,126 @@
+<h1>User#create</h1>
+<p>Find me in app/views/user/create.html.erb</p>
+<br>
+
+<!--NOTE! this should be done with embedded ruby a la form_for -->
+
+
+
+<!--first name -->
+<p> first name: </p>
+<input type="text" id = "first_name">
+<br><br>
+
+<!--last name -->
+<p> last name: </p>
+<input type="text" id = "last_name">
+<br><br>
+
+<!--phone number -->
+<p> phone_number: </p>
+<input type="text" id = "phone_number">
+<br><br>
+
+<!--organization -->
+<p> organization's name: </p>
+<input type="text" id = "organization">
+<br><br>
+
+<!--title -->
+<p> title's name: </p>
+<input type="text" id = "title">
+<br><br>
+
+
+<!--tax id -->
+<p> Tax id: </p>
+<input type="text" id = "tax_id">
+<br><br>
+
+<!--email address-->
+<p> enter your email address here (this will serve as your user name) </p>
+<input type="text" id = "email_address">
+<br><br>
+
+<!--confirm email address-->
+<p> confirm email address</p>
+<input type="text" id = "confirm_email_address">
+<br><br>
+
+<!--password -->
+<p> enter your password </p>
+<input type="text" id = "password">
+<br><br>
+
+<!--confirm password -->
+<p> confirm your password</p>
+<input type="text" id = "confirm_password">
+<br><br>
+
+<button type="button" id= "submit_button" onclick="create_user();">submit</button>
+
+<script>
+
+
+function create_user(){
+
+	console.log("getting into create_user");
+
+	var first_name = $("#first_name").val();
+	var last_name = $("#last_name").val();
+	var phone_number = $("#phone_number").val();
+	var organization = $("#organization").val();
+	var title = $("#title").val();
+	var tax_id = $("#tax_id").val();
+	var email_address = $("#email_address").val();
+	var confirm_email_address = $("#confirm_email_address").val();
+	var password = $("#password").val();
+	var confirm_password = $("#confirm_password").val();
+
+	console.log("first_name is: " + first_name);
+	console.log("organization is: " + organization);
+
+
+ var params = {
+ 		first_name: first_name,
+ 		last_name: last_name,
+ 		phone_number: phone_number, 
+ 		organization: organization,
+ 		title: title,
+ 		tax_id: tax_id, 
+ 		email_address: email_address, 
+ 		confirm_email_address: confirm_email_address, 
+ 		password: password,
+ 		confirm_password: confirm_password
+ }; 
+
+
+
+  $.ajax({
+      type: "POST",
+      url: "/user/create_helper/?format=json",
+      data: params,
+      dataType: "json",
+      traditional: true,
+      async:false,
+      success: function(data){
+        console.log("successfully got into success");
+        console.log(data.post);
+
+      }
+
+    });
+
+
+}
+
+</script>
+
+
+
+
+
+
+
+
+

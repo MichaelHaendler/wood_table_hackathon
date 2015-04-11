@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411171844) do
+ActiveRecord::Schema.define(version: 20150411224947) do
 
   create_table "buildings", force: true do |t|
     t.datetime "created_at",      null: false
@@ -34,6 +34,21 @@ ActiveRecord::Schema.define(version: 20150411171844) do
     t.integer  "num_floors"
     t.string   "structure_class"
     t.string   "location"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "organization"
+    t.string   "tax_id"
+    t.string   "email"
+    t.string   "password"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "job_title"
+    t.string   "confirm_email"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "confirm_password"
   end
 
 end
