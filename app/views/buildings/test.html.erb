@@ -1,0 +1,109 @@
+<head>
+<script src="jquery-1.11.2.min.js"></script>
+</head>
+
+
+
+<h1>Building#testing_page</h1>
+<p>Find me in app/views/building/testing.html.erb</p>
+
+
+<input type="text" id = "address_box">
+
+<button type="button" onclick="getData();"> search</button>
+
+<p id = "output"></p>
+
+<script> 
+
+function getData(){
+
+	console.log("got into getData");
+	console.log(Number("123"));
+
+	//var temp = $("#address_box").val();
+
+	//console.log("temp is: " + temp);
+
+  var temp_array = parse_address($("#address_box").val());
+
+   
+
+  var house_num = temp_array[0];
+
+  var street_n = temp_array[1];
+
+  var params = {house_number: house_num, street_name: street_n}; 
+
+  //var params = { data: $("#address_box").val() }; 
+
+  $.ajax({
+      type: "POST",
+      url: "/test_input_helper/?format=json",
+      data: params,
+      dataType: "json",
+      traditional: true,
+      async:false,
+      success: function(data){
+        console.log("successfully got into success");
+        console.log(data.post);
+        $("#output").text(data.post);
+      }
+
+  });
+
+
+
+}
+
+function parse_address(address_string){
+
+	var house_number = "";
+	var start_at = 0; //start of address (aka Fake St. in 123 Fake St.)
+	// var street_name = "";
+
+	for(var i = 0; address_string.length; i++){
+
+		//meaning it is a number
+		if(isNaN(address_string[i]) == false){
+
+			house_number += address_string[i];
+
+		}else{
+			var street_name = address_string.substr(i);
+			return [house_number,street_name];
+			// street_name = i;
+			// break;
+		}
+
+	}
+
+	//return [house_number , street_name]
+
+
+}
+
+// function user_name_not_taken(poss_user_name){
+  
+//   // console.log("got into ajax_code_boolean_version");
+
+//   var params = { data: poss_user_name };  
+//   var ret_val = true; //return value. default value is true (meaning that the user name is taken)
+//   $.ajax({
+//       type: "POST",
+//       url: "/users/sign_up_helper/?format=json",
+//       data: params,
+//       dataType: "json",
+//       traditional: true,
+//       async:false,
+//       success: function(data){
+//         ret_val = !data.exists;
+//       }
+
+//   });
+
+//   return ret_val;
+
+// }
+
+</script>
