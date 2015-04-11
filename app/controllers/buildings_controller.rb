@@ -3,11 +3,11 @@ class BuildingsController < ApplicationController
 
 	def test
 
-		zoomy3 = Building.find(1).facility_name
-		@zoomy2 = Building.find_by(facility_name: "dunkin donuts")
-		@zoomy1 = Building.find_by(facility_name: "dunkin donuts")
+		# zoomy3 = Building.find(2).facility_name
+		# # @zoomy2 = Building.find_by(facility_name: "dunkin donuts")
+		# # @zoomy1 = Building.find_by(facility_name: "dunkin donuts")
 
-		p "----------------------#{zoomy3}"
+		# p "----------------------#{zoomy3}"
 
 	end	
 	
@@ -17,11 +17,15 @@ class BuildingsController < ApplicationController
 
 		p "input was: #{params[:data]}"
 
+		p "input was: #{params[:street_name]}"
+
+		p "input was: #{params[:house_number]}"
+
 		#post = Building.find(1).facility_name + "----" + params[:data]
 
-		post = Building.find_by(facility_name: params[:data][:street_name], building_num: params[:data][:house_num])
+		post = Building.find_by(street_name: params[:street_name], building_num: params[:house_number])
 
-		p "post is: #{post}"
+		p "post is: #{post.inspect}"
 
 	    respond_to do |format|
 	      format.html

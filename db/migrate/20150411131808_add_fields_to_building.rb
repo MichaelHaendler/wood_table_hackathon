@@ -6,7 +6,7 @@ class AddFieldsToBuilding < ActiveRecord::Migration
     add_column :buildings, :street_type, :string
     add_column :buildings, :city_name, :string
     add_column :buildings, :state_name, :string
-    add_column :buildings, :zip_code, :int
+    add_column :buildings, :zip_code, :string
     add_column :buildings, :phone_number, :string
   end
 end

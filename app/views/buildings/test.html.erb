@@ -14,6 +14,8 @@
 
 <p id = "output"></p>
 
+<ul style="list-style-type:none" id = "final_output"></ul>
+
 <script> 
 
 function getData(){
@@ -47,7 +49,104 @@ function getData(){
       success: function(data){
         console.log("successfully got into success");
         console.log(data.post);
-        $("#output").text(data.post);
+
+// facility_name: "Project Hope", 
+// building_num: 550, 
+// street_name: "Dudley", 
+// street_type: "Street", 
+// city_name: "Roxbury", 
+// state_name: "MA", 
+// zip_code: "02119",
+// phone_number: "617-442-1880", 
+// av_land: 624400, 
+// av_bldg: 961600, 
+// av_total: 1586000, 
+// land_sf: 13427,
+// yr_built: 2005, 
+// gross_area:  19448, 
+// living_area: 15584, 
+// num_floors: 4, 
+// structure_class: "C", 
+// location: "(42.359400000, -71.058700001)"
+
+		var temp = "<li> - facilities name: " + data.post.facility_name + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - building number: " + data.post.building_num + "</li>";
+
+		$("#final_output").append(temp);
+
+		var temp = "<li> - street name: " + data.post.street_name + "</li>";
+
+		$("#final_output").append(temp);
+
+		var temp = "<li> - street_type: " + data.post.street_type + "</li>";
+
+		$("#final_output").append(temp);
+
+		var temp = "<li> - state_name: " + data.post.state_name + "</li>";
+
+		$("#final_output").append(temp);	
+
+		var temp = "<li> - zip code: " + data.post.zip_code + "</li>";
+
+		$("#final_output").append(temp);			
+
+		var temp = "<li> - phone number: " + data.post.phone_number + "</li>";
+
+		$("#final_output").append(temp);
+
+		var temp = "<li> - av_land: " + data.post.av_land + "</li>";
+
+		$("#final_output").append(temp);
+
+		var temp = "<li> - av_bldg: " + data.post.av_bldg + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - av_total: " + data.post.av_total + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - land_sf: " + data.post.land_sf + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - yr_built: " + data.post.yr_built + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - gross_area: " + data.post.gross_area + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - living_area: " + data.post.living_area + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - num_floors: " + data.post.num_floors + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - structure_class: " + data.post.structure_class + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - location: " + data.post.location + "</li>";
+
+		$("#final_output").append(temp);
+
+
       }
 
   });
@@ -71,7 +170,7 @@ function parse_address(address_string){
 
 		}else{
 			var street_name = address_string.substr(i);
-			return [house_number,street_name];
+			return [Number(house_number),street_name];
 			// street_name = i;
 			// break;
 		}
