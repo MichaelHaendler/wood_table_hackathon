@@ -59,7 +59,13 @@ protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~
 
   	p"got into calendar !!!!!!!!!" 
 
-  	p "params[:organization] is: #{params[:organization]}"
+    temp_params = params.permit!
+
+    p "temp_params is: #{temp_params[0]}"
+
+    p "300000000000 strong Ps are: #{params.permit![:email]}"
+
+  	p "20202020 ---- params[:email] is: #{params["email"]}"
 
   	#create user
   	User.create(organization: params[:organization], 
@@ -75,7 +81,9 @@ protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~
 
   	p "after user.create22222222222222"
 
-    p "params[:email] #{params[:email]}"
+    #p "9999params[:data][:email] is: #{params[:data][:email].inspect}"
+    #p "9999params[:data][:email] is: #{params[:data][:email]}"
+   p "9999params[:email] is: #{params[:email].inspect}"
 
   	@user = User.find_by(email: params[:email])
 
