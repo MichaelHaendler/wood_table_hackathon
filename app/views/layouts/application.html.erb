@@ -26,7 +26,8 @@
       <div id="navbarCollapse" class="navbar-collapse collapse">
         <ul class="nav navbar-nav pull-right">
           <li><a href="#">LOG IN</a></li>
-          <li><a  href="#"><span id="signInNav">SIGN UP</span></a></li>
+          <li><%= link_to "SIGN UP", {:controller => "user" , :action => "create"}, :class => "signInNav"  %>
+          </li>
         </ul> 
       </div> 
     </div>

@@ -6,6 +6,7 @@ class UserController < ApplicationController
   	p "params is: #{params[:first_name]}"
 
   	User
+
   end
 
     # t.string   "organization"

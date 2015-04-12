@@ -1,63 +1,38 @@
-<h1>User#create</h1>
-<p>Find me in app/views/user/create.html.erb</p>
-<br>
 
 <!--NOTE! this should be done with embedded ruby a la form_for -->
 
+<h1 id="formHeader">Create Account</h1>
+<form id="signupForm">
+	
 
 
-<!--first name -->
-<p> first name: </p>
-<input type="text" id = "first_name">
-<br><br>
+	<!--organization -->
+	<label for="organization">Organization</label>
+	<input name="organization"type="text" id = "organization" class="form-control" placeholder="organization's name">
 
-<!--last name -->
-<p> last name: </p>
-<input type="text" id = "last_name">
-<br><br>
+	<!--tax id -->
 
-<!--phone number -->
-<p> phone_number: </p>
-<input type="text" id = "phone_number">
-<br><br>
-
-<!--organization -->
-<p> organization's name: </p>
-<input type="text" id = "organization">
-<br><br>
-
-<!--title -->
-<p> title's name: </p>
-<input type="text" id = "title">
-<br><br>
+	<input type="text" id = "tax_id" class="form-control" placeholder="Tax id">
 
 
-<!--tax id -->
-<p> Tax id: </p>
-<input type="text" id = "tax_id">
-<br><br>
+	<!--email address-->
+	<label for="first_name" id="adminLabel">Administrator</label>
+	<input type="text" id = "first_name" class="form-control" placeholder="First Name">
+	<input type="text" id="last_name" class="form-control" placeholder="Last Name">
 
-<!--email address-->
-<p> enter your email address here (this will serve as your user name) </p>
-<input type="text" id = "email_address">
-<br><br>
+	<input type="text" id = "email_address" class="form-control" placeholder="Email">
 
-<!--confirm email address-->
-<p> confirm email address</p>
-<input type="text" id = "confirm_email_address">
-<br><br>
+	<input type="text" id = "password" class="form-control" placeholder="Password">
 
-<!--password -->
-<p> enter your password </p>
-<input type="text" id = "password">
-<br><br>
 
-<!--confirm password -->
-<p> confirm your password</p>
-<input type="text" id = "confirm_password">
-<br><br>
+	
 
-<button type="button" id= "submit_button" onclick="create_user();">submit</button>
+	
+
+
+	<button type="button" id= "submit_button" onclick="create_user();">SUBMIT</button class="form-control">
+
+</form>
 
 <script>
 
@@ -110,8 +85,6 @@ function create_user(){
       }
 
     });
-
-
 }
 
 </script>
