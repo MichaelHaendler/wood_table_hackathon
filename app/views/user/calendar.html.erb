@@ -41,7 +41,15 @@
 <p id = "third">no third date selected</p>
 
 
-<button type="button" id = "submit_button" onclick = "submit_dates();">submit</button>
+<!-- <button type="button" id = "submit_button" onclick = "submit_dates();">submit</button> -->
+
+
+<!-- <button type="button" id = "report_results">see report</button> -->
+
+<%= link_to({:controller => "user" , :action => "report" }) do %>
+ 	<button id = "result_of_report">submit</button>
+ <% end %>
+
     </div>
   </div>
   
