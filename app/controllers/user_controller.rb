@@ -59,31 +59,45 @@ protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~
 
   	p"got into calendar !!!!!!!!!" 
 
-  	p "params[:organization] is: #{params[:organization]}"
+    temp_params = params.permit!
+
+    p "temp_params is: #{temp_params[0]}"
+
+    p "300000000000 strong Ps are: #{params.permit![:email]}"
+
+  	p "20202020 ---- params[:email] is: #{params["email"]}"
 
   	#create user
   	User.create(organization: params[:organization], 
   				tax_id: params[:tax_id], 
-  				email: params[:email_address], 
+  				email: params[:email], 
   				confirm_email: params[:confirm_email],
   				password: params[:password], 
   				first_name: params[:first_name], 
   				last_name: params[:last_name], 
   				phone_number: params[:phone_number], 
-  				job_title: params[:title], 
+  				job_title: params[:job_title], 
   				confirm_password: params[:password_confirmation])
 
   	p "after user.create22222222222222"
 
-  	@user = User.find_by(email: params[:email_address])
+    #p "9999params[:data][:email] is: #{params[:data][:email].inspect}"
+    #p "9999params[:data][:email] is: #{params[:data][:email]}"
+   p "9999params[:email] is: #{params[:email].inspect}"
+
+  	@user = User.find_by(email: params[:email])
+
+    p "(still in user controller) @user.email is: #{@user.email}"
 
 	#save users info 
-	session[:user_name] = params[:email_address]
-	session[:user_id] = User.find_by(email: params[:email_address]).id #get user's unique id.
+	session[:user_name] = @user.email
+	session[:user_id] = @user.id #get user's unique id.
 
 	p"right before email3333333333333333333333333" 
 
-	#UserMailer.audit_request(@user).deliver_now
+  p "UserMailer.audit_request(@user) is: #{UserMailer.audit_request(@user).inspect}"
+
+	UserMailer.audit_request(@user).deliver_now
 
   	
   end
