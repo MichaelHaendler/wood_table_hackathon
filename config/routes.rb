@@ -19,7 +19,12 @@ Rails.application.routes.draw do
 
   post 'user/create_helper', to: 'user#create_helper'
 
-  get 'user/calendar', to: 'user#calendar'
+  #get 'user/calendar', to: 'user#calendar'
+
+  post 'user/audit_request', to: 'user#audit_request'
+
+  post 'user/calendar', to: 'user#calendar', as: 'calendar' #probably calendar_path
+
 
 
 
