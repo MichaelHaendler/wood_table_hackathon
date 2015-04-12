@@ -33,11 +33,24 @@ h1 {
 }
 .navbar-default {
 	background-color: white;
+	border: none;
 
 }
 
+.navbar-inner {
+    background:transparent;
+}
+
+.navbar {
+   background-color: transparent;
+   background: transparent;
+}
+
+.navbar li { color: #000 } 
+
 nav.navbar.navbar-default{
 	margin-bottom: 0;
+
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -59,6 +72,12 @@ nav.navbar.navbar-default{
 	font-family: 'Montserrat', sans-serif;
 	font-size: 32px;
 	font-weight: 700;
+
+
+}
+
+a.navbar-brand img {
+	height: 80px;
 
 }
 
@@ -87,15 +106,16 @@ a.navbar-brand.navItem {
 }
 
 #landingPage {
-	background-image: image_url('computer.jpeg');
+	background-image: image_url('woodtable1.jpg');
+	background-size: cover;
 	height: 100%;
 	width: 100%;
+	margin-top: -50px;
 }
 
 .landingPageText {
 	color: white;
 	margin: 0 auto;
-	max-width: 420px;
 	position: relative;
   top: 50%;
   padding: 10px;
@@ -116,6 +136,7 @@ button.signupButton {
 	margin-top: 10px;
 	color: white;
 	text-decoration: none;
+	margin-bottom: 15px;
 
 }
 
@@ -144,10 +165,10 @@ a.signInNav {
 
 #formHeader {
 	text-align:center;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
-#signupForm button {
+input#submit_button.form-control {
 	background-color: #EB3E4D;
 	border: none;
 	color: white;
@@ -155,6 +176,31 @@ a.signInNav {
 	margin-top: 10px;
 	border-radius: 3px;
 	font-size: 1.5em;
+}
+
+div.landingPageParagraphs h1 {
+	text-align: center;
+	margin-top: 25px;
+	font-family: "Letter Gothic Std";
+}
+
+div.landingPageParagraphs p {
+	width: 600px;
+	max-width: 80%;
+	padding: 10px;
+	display: block;
+	margin: 0 auto;
+	font-family: "Roboto";
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+h1#calendarHeader {
+	
+	max-width: 600px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 100px;	
 }
 
  
