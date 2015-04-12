@@ -249,4 +249,27 @@ img.imageCenter {
 	margin-top: 100px;
 }
 
+p#first, p#second, p#third {
+	text-align:center;
+}
+
+#result_of_report {
+	display: block;
+	margin: 0 auto;
+}
+
+div.searchWrapper {
+	margin: 30px auto;
+	display: block;
+
+}
+div.searchWrapper input {
+	width: 500px;
+}
+
+div.searchWrapper input, div.searchWrapper button {
+	margin: 0 auto;
+	display: block;
+}
+
  
