@@ -72,12 +72,10 @@ nav.navbar.navbar-default{
 	font-family: 'Montserrat', sans-serif;
 	font-size: 32px;
 	font-weight: 700;
-
-
 }
 
 a.navbar-brand img {
-	height: 80px;
+	height: 120px;
 
 }
 
@@ -234,6 +232,21 @@ img.floatLeft {
 
 #reportTable h1 {
 	text-align: center;
+	margin-top: 100px;
+}
+
+h1.centerText {
+	text-align: center;
+	margin-top: 50px;
+}
+
+img.imageCenter {
+	margin: 0 auto;
+
+}
+
+#reportTable {
+	margin-top: 100px;
 }
 
  
