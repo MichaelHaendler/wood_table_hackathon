@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/calendar', to: 'user#calendar'
 
+  get '/user/report', to: 'user#report'
 
   get '/search', to: 'buildings#test'
   #get '/search', to: 'homes#test'
