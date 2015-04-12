@@ -10,6 +10,11 @@ class BuildingsController < ApplicationController
 		# p "----------------------#{zoomy3}"
 
 	end	
+	
+#clean up sheet. 
+
+#create pat's user (make sure works)
+
 
 
   # 550 Dudley	

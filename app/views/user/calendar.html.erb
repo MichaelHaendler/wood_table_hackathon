@@ -20,6 +20,9 @@
 
 
 <div id = "successful_email"></div>
+<p id = "first">no first date selected</p>
+<p id = "second">no second date selected</p>
+<p id = "third">no third date selected</p>
 
 <div id="datepicker"></div>
  
@@ -40,14 +43,17 @@ $(function() {
 
         	if(date1 == ""){
         		date1 = date;
+        		$("#first").text(date);
         		console.log("date1 is: " + date1);
         	}
         	else if(date2 == ""){
         		date2 = date;
+        		$("#second").text(date);
         		console.log("date2 is: " + date2);
         	}
         	else{
         		date3 = date;
+        		$("#third").text(date);
         		console.log("date3 is: " + date3);
         	}
 

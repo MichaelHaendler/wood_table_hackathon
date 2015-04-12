@@ -1,3 +1,6 @@
+
+
+
 <div id="landingPage">
 	
 
@@ -8,12 +11,24 @@
 	<%= link_to({:controller => "user" , :action => "create" }) do %>
  <button class="signupButton">SIGN UP FREE</button>
  	<% end %>
-</div>
 
+	<%= link_to({:controller => "user" , :action => "calendar" }) do %>
+ <button class="signupButton">schedule your audit today</button>
+ 	<% end %>
+
+</div>
+<br><br><br>
 
 </div>
 
 <div class="landingPageParagraphs">
+
+<input type="text" id = "address_box" value = "889 Harrison">
+<button type="button" onclick="getData();"> search</button>
+<ul style="list-style-type:none" id = "final_output"></ul>
+
+
+
 	<h1>Get a free utility audit report</h1>
 	<p>Schedule a free energy audit with MassSave through your organization’s Woodtable account.</p> 
 	<p>
@@ -33,5 +48,164 @@
 <p>It’s simple! All we need is your organization’s name, tax ID number, and an administrator’s contact information. We’ll generate your results, and your discounts, all in one place.</p>
 <%= link_to({:controller => "user" , :action => "create" }) do %>
  <button class="signupButton">SIGN UP FREE</button>
+
  <% end %>
 </div>
+
+<!-- <input type="text" id = "address_box" value = "889 Harrison">
+<button type="button" onclick="getData();"> search</button>
+<ul style="list-style-type:none" id = "final_output"></ul> -->
+
+
+<script> 
+
+function getData(){
+
+	console.log("got into getData");
+	console.log(Number("123"));
+
+	//var temp = $("#address_box").val();
+
+	//console.log("temp is: " + temp);
+
+  var temp_array = parse_address($("#address_box").val());
+
+   
+
+  var house_num = temp_array[0];
+
+  var street_n = temp_array[1];
+
+  var params = {house_number: house_num, street_name: street_n}; 
+
+  //var params = { data: $("#address_box").val() }; 
+
+  $.ajax({
+      type: "POST",
+      url: "/test_input_helper/?format=json",
+      data: params,
+      dataType: "json",
+      traditional: true,
+      async:false,
+      success: function(data){
+        console.log("successfully got into success");
+        console.log(data.post);
+
+		$("#final_output").empty();
+
+		var temp = "<li> - facilities name: " + data.post.facility_name + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - address: " + data.post.building_num + " " + data.post.street_name + " " + data.post.street_type + ", " + data.post.city_name + " " + data.post.state_name + ", " + data.post.zip_code +  "</li>";
+
+		$("#final_output").append(temp);
+
+		// var temp = "<li> - street name: " + data.post.street_name + "</li>";
+
+		// $("#final_output").append(temp);
+
+		// var temp = "<li> - street_type: " + data.post.street_type + "</li>";
+
+		// $("#final_output").append(temp);
+
+		// var temp = "<li> - state name: " + data.post.state_name + "</li>";
+
+		// $("#final_output").append(temp);	
+
+		// var temp = "<li> - zip code: " + data.post.zip_code + "</li>";
+
+		// $("#final_output").append(temp);			
+
+		var temp = "<li> - phone number: " + data.post.phone_number + "</li>";
+
+		$("#final_output").append(temp);
+
+		var temp = "<li> - land value: " + data.post.av_land + "</li>";
+
+		$("#final_output").append(temp);
+
+		var temp = "<li> - building value: " + data.post.av_bldg + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - total land + building: " + data.post.av_total + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - land square footage: " + data.post.land_sf + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - year built: " + data.post.yr_built + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - total building area: " + data.post.gross_area + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - total livable area: " + data.post.living_area + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - num_floors: " + data.post.num_floors + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - structure_class: " + data.post.structure_class + "</li>";
+
+		$("#final_output").append(temp);
+
+
+		var temp = "<li> - location: " + data.post.location + "</li>";
+
+		$("#final_output").append(temp);
+
+
+      }
+
+  });
+
+
+
+}
+
+function parse_address(address_string){
+
+	var house_number = "";
+	var start_at = 0; //start of address (aka Fake St. in 123 Fake St.)
+	// var street_name = "";
+
+	for(var i = 0; address_string.length; i++){
+
+		//meaning it is a number
+		if(isNaN(address_string[i]) == false){
+
+			house_number += address_string[i];
+
+		}else{
+			var street_name = address_string.substr(i);
+			return [Number(house_number),street_name];
+			// street_name = i;
+			// break;
+		}
+
+	}
+
+	//return [house_number , street_name]
+
+
+}
+
+
+
+</script>

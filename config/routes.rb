@@ -11,10 +11,15 @@ Rails.application.routes.draw do
   #root 'welcome#index'
   root 'home#index' 
 
+  get '/calendar', to: 'user#calendar'
+
 
   get '/search', to: 'buildings#test'
+  #get '/search', to: 'homes#test'
 
-  post '/test_input_helper', to: 'buildings#test_input_helper', as: 'blahy'
+post '/test_input_helper', to: 'home#test_input_helper'
+
+  #post '/test_input_helper', to: 'buildings#test_input_helper', as: 'blahy'
 
   get 'user/create', to: 'user#create'
 
@@ -26,7 +31,7 @@ Rails.application.routes.draw do
 
   post 'user/audit_request', to: 'user#audit_request'
 
-  post 'user/calendar', to: 'user#calendar', as: 'calendar' #probably calendar_path
+  #post 'user/calendar', to: 'user#calendar', as: 'calendar' #probably calendar_path
 
 
 

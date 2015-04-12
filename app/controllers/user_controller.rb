@@ -97,7 +97,7 @@ protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~
 
   p "UserMailer.audit_request(@user) is: #{UserMailer.audit_request(@user).inspect}"
 
-	UserMailer.audit_request(@user).deliver_now
+	#UserMailer.audit_request(@user).deliver_now
 
   	
   end
