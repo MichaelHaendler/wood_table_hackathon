@@ -7,6 +7,7 @@ protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~
   	p "params is: #{params[:first_name]}"
 
   	@user = User.new
+
   end
 
     # t.string   "organization"
