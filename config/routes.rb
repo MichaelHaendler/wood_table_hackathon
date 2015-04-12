@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   #root 'welcome#index'
   root 'home#index' 
 
+
+  get '/search', to: 'buildings#test'
+
   post '/test_input_helper', to: 'buildings#test_input_helper', as: 'blahy'
 
   get 'user/create', to: 'user#create'

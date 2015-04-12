@@ -2,7 +2,7 @@
 <!--NOTE! this should be done with embedded ruby a la form_for -->
 
 <h1 id="formHeader">Create Account</h1>
-<form id="signupForm">
+
 	
 
 <%= form_for @user, url: calendar_path do |f| %>
@@ -41,6 +41,11 @@
       <br>
       <%= f.text_field :email %>
 
+       <br>
+      <%= f.label :confirm_email, "confirm email address" %>
+      <br>
+      <%= f.text_field :confirm_email %>
+
 
        <br>
       <%= f.label :password, "password" %>
@@ -48,21 +53,23 @@
       <%= f.password_field :password %>
 
        <br>
-      <%= f.label :password_confirmation, "password confirmation" %>
+      <%= f.label :password_confirmation, "confirm password" %>
       <br>
       <%= f.password_field :password_confirmation %>
       <br><br>
 
-	<!--organization -->
+
+	<%= f.submit "SUBMIT", :class => "form-control", :id => "submit_button"  %>
+
+<!--
+<form id="signupForm">
+
 	<label for="organization">Organization</label>
 	<input name="organization"type="text" id = "organization" class="form-control" placeholder="organization's name">
-
-	<!--tax id -->
 
 	<input type="text" id = "tax_id" class="form-control" placeholder="Tax id">
 
 
-	<!--email address-->
 	<label for="first_name" id="adminLabel">Administrator</label>
 	<input type="text" id = "first_name" class="form-control" placeholder="First Name">
 	<input type="text" id="last_name" class="form-control" placeholder="Last Name">
@@ -70,77 +77,15 @@
 	<input type="text" id = "email_address" class="form-control" placeholder="Email">
 
 	<input type="text" id = "password" class="form-control" placeholder="Password">
-
-
-	
-
-	
-
-
-	<button type="button" id= "submit_button" onclick="create_user();">SUBMIT</button class="form-control">
-
 </form>
+-->
 
-<script>
+	
 
-
-function create_user(){
-
-	console.log("getting into create_user");
-
-	var first_name = $("#first_name").val();
-	var last_name = $("#last_name").val();
-	var phone_number = $("#phone_number").val();
-	var organization = $("#organization").val();
-	var title = $("#title").val();
-	var tax_id = $("#tax_id").val();
-	var email_address = $("#email_address").val();
-	var confirm_email_address = $("#confirm_email_address").val();
-	var password = $("#password").val();
-	var confirm_password = $("#confirm_password").val();
-
-	console.log("first_name is: " + first_name);
-	console.log("organization is: " + organization);
+	
 
 
- var params = {
- 		first_name: first_name,
- 		last_name: last_name,
- 		phone_number: phone_number, 
- 		organization: organization,
- 		title: title,
- 		tax_id: tax_id, 
- 		email_address: email_address, 
- 		confirm_email_address: confirm_email_address, 
- 		password: password,
- 		confirm_password: confirm_password
- }; 
-
-
-
-  $.ajax({
-      type: "POST",
-      url: "/user/create_helper/?format=json",
-      data: params,
-      dataType: "json",
-      traditional: true,
-      async:false,
-      success: function(data){
-        console.log("successfully got into success");
-        console.log(data.post);
-
-      }
-
-    });
-}
-
-</script>
->>>>>>> 05ceea4e953d82e3526b00cf15d68f3572affc8d
-
-      <br><br>
-      <%= f.submit "Create my account" %>
-
-      <br><br><br><br>
+	<!-- <button type="button" id= "submit_button" onclick="create_user();">SUBMIT</button class="form-control"> -->
 
  <% end %>
 

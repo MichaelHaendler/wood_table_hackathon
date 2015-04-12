@@ -65,16 +65,25 @@ protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~
   	User.create(organization: params[:organization], 
   				tax_id: params[:tax_id], 
   				email: params[:email_address], 
+  				confirm_email: params[:confirm_email],
   				password: params[:password], 
   				first_name: params[:first_name], 
   				last_name: params[:last_name], 
   				phone_number: params[:phone_number], 
   				job_title: params[:title], 
-  				confirm_email: params[:confirm_password])
+  				confirm_password: params[:password_confirmation])
+
+  	p "after user.create22222222222222"
+
+  	@user = User.find_by(email: params[:email_address])
 
 	#save users info 
 	session[:user_name] = params[:email_address]
 	session[:user_id] = User.find_by(email: params[:email_address]).id #get user's unique id.
+
+	p"right before email3333333333333333333333333" 
+
+	#UserMailer.audit_request(@user).deliver_now
 
   	
   end
