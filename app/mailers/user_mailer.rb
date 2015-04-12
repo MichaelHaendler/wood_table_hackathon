@@ -16,8 +16,8 @@ class UserMailer < ActionMailer::Base
   def audit_request(user)
     @greeting = "Hi"
     p "user is: #{user.email}"
-    #mail to: user.email, subject: "audit request"
-    mail to: "michael.haendler@gmail.com", subject: "audit request"
+    mail to: user.email, subject: "audit request"
+    #mail to: "michael.haendler@gmail.com", subject: "audit request" #works!
   end
 
 
