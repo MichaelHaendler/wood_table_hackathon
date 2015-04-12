@@ -13,16 +13,22 @@
 </head>
 <body>
 
-
-<h1 id="calendarHeader">We think you should be spending your time helping people, not ---</h1>
-
-<h2>Choose three dates when your organization is available for an audit. You will be contacted by MassSave by email confirming the date and time shortly.</h2>
-
-
-<div id = "successful_email"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1 id="calendarHeader">We think you should be spending your time on your mission, not sorting through energy offers.</h1>
+      <h2>Choose three dates when your organization is available for an audit. You will be contacted by MassSave by email confirming the date and time shortly.</h2>
+    </div>
+    <div class="col-sm-6">
+      <div id = "successful_email"></div>
 
 <div id="datepicker"></div>
- 
+<button type="button" id = "submit_button" onclick = "submit_dates();">submit</button>
+    </div>
+  </div>
+  
+</div>
+
 <script>
 
 // $( "#datepicker" ).datepicker();
@@ -61,7 +67,7 @@ $(function() {
 });
 </script>
 
-<button type="button" id = "submit_button" onclick = "submit_dates();">submit</button>
+
 
 
 <script>
