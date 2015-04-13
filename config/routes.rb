@@ -11,18 +11,21 @@ Rails.application.routes.draw do
   #root 'welcome#index'
   root 'home#index' 
 
-  get '/calendar', to: 'user#calendar'
+  # get '/calendar', to: 'user#calendar'
+
+post '/calendar', to: 'user#calendar'
 
   get '/user/report', to: 'user#report'
 
   get '/search', to: 'buildings#test'
-  #get '/search', to: 'homes#test'
+  #get '/search2', to: 'homes#test'
 
 post '/test_input_helper', to: 'home#test_input_helper'
 
   #post '/test_input_helper', to: 'buildings#test_input_helper', as: 'blahy'
 
-  get 'user/create', to: 'user#create'
+  #get 'user/create', to: 'user#create'
+  get '/create', to: 'user#create'
 
   post 'user/create_helper', to: 'user#create_helper'
 

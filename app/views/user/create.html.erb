@@ -5,11 +5,16 @@
 
 	
 <%= form_for @user, url: calendar_path, :html => {:id => "signupForm"} do |f| %>
-	<%= f.label :first_name, "Organization" %>
-	<%= f.text_field :organization, :placeholder => "Organization", :class => "form-control" %>
-	<%= f.text_field :tax_id, :placeholder => "Tax ID", :class => "form-control"  %>
+
+
+    	<%= f.label :organization, "Organization" %>
+    	<%= f.text_field :organization, :placeholder => "Organization", :class => "form-control" %>
+
+
+    	<%= f.text_field :tax_id, :placeholder => "Tax ID", :class => "form-control"  %>
       
       <%= f.label :first_name, "Administrator", :id => "adminLabel" %>
+
       <%= f.text_field :first_name, :placeholder => "First Name", :class => "form-control" %>
 
      
@@ -17,6 +22,7 @@
 
 
       <%= f.text_field :phone_number, :placeholder => "Phone Number", :class => "form-control" %>
+
       <%= f.text_field :job_title, :placeholder => "Job Title", :class => "form-control" %>
 
        
@@ -28,7 +34,7 @@
       <%= f.password_field :password, :placeholder => "Password", :class => "form-control" %>
 
       
-      <%= f.password_field :password_confirmation, :placeholder => "Password", :class => "form-control" %>
+      <%= f.password_field :password_confirmation, :placeholder => "Password", :class => "form-control" %> 
 
 	<%= f.submit "SUBMIT", :class => "form-control", :id => "submit_button", :class => "form-control"  %>
 
