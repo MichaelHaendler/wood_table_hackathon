@@ -66,36 +66,24 @@ protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~
 
 
   	#create user
-  	User.create(organization: params[:user][:organization], 
-  				tax_id: params[:user][:tax_id], 
-  				email: params[:user][:email], 
-  				confirm_email: params[:user][:confirm_email],
-  				password: params[:user][:password], 
-  				first_name: params[:user][:first_name], 
-  				last_name: params[:user][:last_name], 
-  				phone_number: params[:user][:phone_number], 
-  				job_title: params[:user][:job_title], 
-  				confirm_password: params[:user][:password_confirmation])
+  	# User.create(organization: params[:user][:organization], 
+  	# 			tax_id: params[:user][:tax_id], 
+  	# 			email: params[:user][:email], 
+  	# 			confirm_email: params[:user][:confirm_email],
+  	# 			password: params[:user][:password], 
+  	# 			first_name: params[:user][:first_name], 
+  	# 			last_name: params[:user][:last_name], 
+  	# 			phone_number: params[:user][:phone_number], 
+  	# 			job_title: params[:user][:job_title], 
+  	# 			confirm_password: params[:user][:password_confirmation])
 
-  	p "after user.create22222222222222"
+   #  @user = User.find_by(email: params[:user][:email])
 
-    #p "9999params[:data][:email] is: #{params[:data][:email].inspect}"
-    #p "9999params[:data][:email] is: #{params[:data][:email]}"
-   p "9999params[:email] is: #{params[:user][:email]}"
+    #save users info 
+   #  session[:user_name] = @user.email
+   #  session[:user_id] = @user.id #get user's unique id.
 
-  	@user = User.find_by(email: params[:user][:email])
-
-    p "(still in user controller) @user.email is: #{@user.email}"
-
-	#save users info 
-	session[:user_name] = @user.email
-	session[:user_id] = @user.id #get user's unique id.
-
-	p"right before email3333333333333333333333333" 
-
-  p "UserMailer.audit_request(@user) is: #{UserMailer.audit_request(@user).inspect}"
-
-	UserMailer.audit_request(@user).deliver_now
+	  # UserMailer.audit_request(@user).deliver_now
 
   	
   end

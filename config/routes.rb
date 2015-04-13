@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #root 'welcome#index'
   root 'home#index' 
 
-  # get '/calendar', to: 'user#calendar'
+#get '/calendar', to: 'user#calendar'
 
 post '/calendar', to: 'user#calendar'
 

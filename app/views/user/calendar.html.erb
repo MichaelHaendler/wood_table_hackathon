@@ -51,6 +51,7 @@
 
 <script>
 
+
 // $( "#datepicker" ).datepicker();
 
 // $( "#datepicker").
@@ -60,9 +61,16 @@ var date1 = "";
 var date2 = "";
 var date3 = "";
 
+var blah; 
+
 $(function() {
+
+
+
     $('#datepicker').datepicker( {
         onSelect: function(date) {
+
+        	blah = date;
 
         	if(date1 == ""){
         		date1 = date;
@@ -87,6 +95,13 @@ $(function() {
         startDate: '01/01/2000',
         firstDay: 1
     });
+
+  $('#datepicker').datepicker("setDate", new Date(2015,3,20) );
+
+  $('#datepicker').datepicker('setDate');
+  //$('#datepicker').datepicker("setDate", new Date(2015,5,20) );
+
+  //$("#datepicker").datepicker("setDate", blah);
 });
 </script>
 
@@ -128,4 +143,7 @@ function submit_dates(){
  
 </body>
 </html>
- 
+
+
+
+
