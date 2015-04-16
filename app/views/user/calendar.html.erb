@@ -1,4 +1,8 @@
 
+<!-- http://stackoverflow.com/questions/6657843/jquery-ui-datepicker-how-to-alter-datepicker-html -->
+
+<!-- http://stackoverflow.com/questions/2241826/jquery-get-all-links-with-inner-html-value -->
+
 <!-- https://jqueryui.com/datepicker/ -->
 
 <!-- http://api.jqueryui.com/datepicker/#option-showOn -->
@@ -169,8 +173,12 @@ function on_select_helper(date_obj){
   if(taken == true){
     console.log(" if(taken == true)");
     dateArray[loc_in_array] = reset_hash();
-    $(curr_html_Obj).removeClass('ui-state-active');
-    
+    //$(curr_html_Obj).removeClass('ui-state-active');
+    console.log("date_obj.day_num to number is: " + Number(date_obj.day_num));
+
+    //right idea...but not working. 
+    $('td a:contains(' + Number(date_obj.day_num) +')').removeClass('ui-state-active');
+
   }
   //if false (meaning was never found) and loc_in_array != -1 (meaning
   //a spot was found) then use that spot
@@ -198,12 +206,34 @@ function on_select_helper(date_obj){
 
   // console.log(this.getDate());
 
-  // for(loc in dateArray){
-  //   console.log("got in loop");
-  //   console.log("year is: " + dateArray[loc].year);
-  //   $('#datepicker').datepicker("setDate", new Date(date_obj.year,date_obj.month,date_obj.day));
+  for(loc in dateArray){
+    console.log("got in loop");
+    
 
-  // }
+    if(dateArray[loc].year != -1){
+
+      console.log("year is: " + dateArray[loc].year);
+      //$('#datepicker').datepicker("setDate", new Date(date_obj.year,date_obj.month,date_obj.day));
+      //$('td a:contains(' + Number(date_obj.day_num) +')').removeClass('ui-state-active');
+
+      var replacement = "<a class=\"ui-state-default\" href=\"#\">"+ Number(date_obj.day_num) +"</a>";
+
+      console.log("$('td a:contains(' + Number(date_obj.day_num) +')').parent()  BEFORE is: " + $('td a:contains(' + Number(date_obj.day_num) +')').parent().html());
+
+      console.log("replacement is: " + replacement);
+
+      //$('td a:contains(' + Number(date_obj.day_num) +')').parent().replaceWith(replacement);
+
+      //$('td a:contains(' + Number(date_obj.day_num) +')').parent().removeClass('ui-state-active');
+      $('td a:contains(' + Number(date_obj.day_num) +')').removeClass('ui-state-active');
+
+      console.log("$('td a:contains(' + Number(date_obj.day_num) +')').parent()  AFTER is: " + $('td a:contains(' + Number(date_obj.day_num) +')').parent().html());
+
+      console.log("$('td a:contains(' + Number(date_obj.day_num) +')')  AFTER is: " + $('td a:contains(' + Number(date_obj.day_num) +')').html());
+
+    }
+
+  }
 
 
 }
