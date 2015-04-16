@@ -27,7 +27,7 @@
 
 
 
-<div id="datepicker"></div>
+<div id="datepicker" onclick = "stop_highlighting_todays_date();"></div>
 
 
 <p id = "first"></p>
@@ -52,65 +52,255 @@
 <script>
 
 
-// $( "#datepicker" ).datepicker();
+var dateArray = [];//global
 
-// $( "#datepicker").
-
-
-var date1 = "";
-var date2 = "";
-var date3 = "";
-
-var blah; 
+(create_date_array(3));
 
 $(function() {
 
+    $('#datepicker').datepicker({
 
+      // //change "ui-state-default ui-state-highlight" to "ui-state-default"
+      // $('.ui-state-highlight').removeClass('ui-state-highlight').addClass('ui-state-default');
 
-    $('#datepicker').datepicker( {
+      // //$('.blue').removeClass('blue').addClass('green');
+
+      // //change font color to red (readable but different from black)
+      // $(".ui-datepicker-today").find("a").css("background-color");
+      
+        showButtonPanel: true,
+        currentText: "Today's date is: " + $.datepicker.formatDate('MM dd, yy', new Date()) ,
+
+        //$('#datepicker').datepicker("setDate", new Date(2015,3,20) );
         onSelect: function(date) {
 
-        	blah = date;
+          var date = $(this).val().split('/');
+          console.log("2222date is: " + date);
+          var year = date[2];
+          var month = date[1];
+          var day_number = date[0];//21st or what have you
+          console.log("day_number is: " + day_number);
+          var week = ["sun","mon","tue","wed","thr","fri","sat"];
+          var date_obj = create_date_hash(day_number,month,year);
 
-        	if(date1 == ""){
-        		date1 = date;
-        		$("#first").text(date);
-        		console.log("date1 is: " + date1);
-        	}
-        	else if(date2 == ""){
-        		date2 = date;
-        		$("#second").text(date);
-        		console.log("date2 is: " + date2);
-        	}
-        	else{
-        		date3 = date;
-        		$("#third").text(date);
-        		console.log("date3 is: " + date3);
-        	}
+          console.log(this);
 
-            //alert(date);
+          //on_select_helper(date_obj,this);
+
+
+           //$('a.ui-state-default').removeClass('ui-state-highlight');
+
+          
+
+          console.log("getting here");
+
         },
+
         selectWeek: true,
         inline: true,
         startDate: '01/01/2000',
         firstDay: 1
     });
 
-  $('#datepicker').datepicker("setDate", new Date(2015,3,20) );
+  stop_highlighting_todays_date(); //works the first time but not the second. don't know why. 
 
-  $('#datepicker').datepicker('setDate');
-  //$('#datepicker').datepicker("setDate", new Date(2015,5,20) );
-
-  //$("#datepicker").datepicker("setDate", blah);
 });
-</script>
+
+//nos == num of spots (aka how many appointments you can make)
+function create_date_array(nos){
+
+  console.log("(create_date_array)");
+
+  //var temp = {day_num: "", month: "", year: "", day_name: "" }
+
+  var temp = {day_num: -1, month: -1, year: -1};
+
+  for(var i = 0; i < nos; i++){
+    dateArray.push(temp);
+  }
 
 
+}
+
+function on_select_helper(date_obj,curr_html_Obj){
+
+  console.log("(on_select_helper)");
+
+ var clicked_date = date_obj;
+
+  var taken = false;
+  var loc_in_array = -1;
+
+  //see if that date is taken. if it isn't, return false. if it is taken,
+  //return true. if you found an empty and the date wasn't taken, return that
+  //instead.
+
+  for(loc in dateArray){
+
+    //if it is taken, set taken to true and set loc_in_array so that we can clear it.
+    if(equal(dateArray[loc],date_obj)){
+      taken = true;
+      loc_in_array = loc;
+      break;
+    }
+
+    //if we don't know yet whether it's taken or not, but find an empty spot, 
+    //set loc_in_array to it. 
+    if(empty(dateArray[loc])){
+      loc_in_array = loc;
+    }
+
+    //if we've gotten to the end of the array, and the last element doesn't match
+    //up to it (if it did, that first if statement would have popped off) and we
+    //never came across 
+    if(loc + 1 == dateArray.length){
+      taken = false;
+
+    }
+
+    //if we get to the end of the array, no matches and no empty spots, that
+    //we've used up all of the spots. so treat empty_loc's -1 to mean nothing
+    //is availiable (can't chose any more dates)
+  }
+
+  //if true (meaning we found it) then clear it 
+  if(taken == true){
+    dateArray[loc_in_array] = reset_hash();
+    $(curr_html_Obj).removeClass('ui-state-active');
+  }
+  //if false (meaning was never found) and loc_in_array != -1 (meaning
+  //a spot was found) then use that spot
+  else if(taken == false && loc_in_array != -1){
+    dateArray[loc_in_array] = date_obj;
+    $('#datepicker').datepicker("setDate", new Date(date_obj.year,date_obj.month,date_obj.day) );
+  }
+  //if taken was false (meaning it was never found) but 
+  //loc_in_array == -1 (meaning no opening was found) then don't do 
+  //anything (don't allow said date to stay checked off)
+  else if(taken == false && loc_in_array == -1){
+    //unhighlight
+    //take the current one clicked on and unhighlight it. 
+    $(curr_html_Obj).removeClass('ui-state-active');
+
+  }
+
+  //a for loop to make sure that all the elements that need to be 
+  //displayed are. 
+
+  // console.log(this.getDate());
+
+  // for(loc in dateArray){
+  //   console.log("got in loop");
+  //   console.log("year is: " + dateArray[loc].year);
+  //   $('#datepicker').datepicker("setDate", new Date(date_obj.year,date_obj.month,date_obj.day));
+
+  // }
 
 
-<script>
+}
+
+function create_date_hash(day_num,month,year){
+  return {day_num: day_num, month: month, year: year};
+}
+
+function reset_hash(){
+  return {day_num: -1, month: -1, year: -1};
+}
+
+function empty(hObj){
+
+  //if the num is not -1 (aka is set to some proper value)
+  //return false (that is, it's not empty)
+  if(hObj1.day_num != -1){
+    return false;
+  }
+  //otherwise, return true (it IS empty)
+  else{
+    return true;
+  }
+
+}
+
+//hObj1 == hash object 1
+//{day_num: "", month: "", year: ""}
+function equal(hObj1,hObj2){
+
+  if(hObj1.day_num == hObj2.day_num &&
+    hObj1.month == hObj2.month &&
+    hObj1.year == hObj2.year){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 //http://stackoverflow.com/questions/15040964/warning-cant-verify-csrf-token-authenticity-in-case-of-api-development
+
+function stop_highlighting_todays_date(){
+
+  console.log("(stop_highlighting_todays_date)");
+
+  //var date = $('#datepicker').datepicker('getDate');
+  var date = new Date();
+  var day_number = date.getDate();
+  var day = date.getDay(); //2 == tuesday
+  var month = date.getMonth() ;
+  var year = date.getFullYear();
+  var saturday = 6;
+  var sunday = 0;
+  var loc = '.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today';
+
+  console.log("day_number is: " + day_number);
+  console.log("day is: " + day);
+
+
+
+
+  //if weekend
+  if(day == saturday || day == sunday){
+
+    console.log("if weekend");
+
+
+    var replacement = "<td id = today_element class=' ui-datepicker-week-end ' data-handler='selectDay' data-event='click' data-month= " + month + " data-year=" + year + "><a class='ui-state-default' href='#'>"+day_number+"</a></td>";
+
+    $(loc).replaceWith(replacement);
+
+  }
+  //else, regular day
+  else{
+
+    
+
+    console.log("if weekday");
+
+    // <a class="ui-state-default ui-state-highlight ui-state-active" href="#">15</a>
+    console.log("before: " + $(loc).html());
+
+    var replacement = "<td id = today_element" +
+    "class='' data-handler='selectDay'" +
+    " data-event='click'" +
+    " data-month="+ month +
+    " data-year="+ year + ">" +
+    "<a class='ui-state-default ' href='#'>"+day_number+"</a>"+
+    "</td>";
+
+    //var replacement2 = "<a class='ui-state-default ui-state-active' href='#'>"+day_number+"</a>";
+
+    $(loc).replaceWith(replacement);
+
+    
+
+    // $(loc).toggleClass('ui-state-highlight');
+    // //$(loc).removeClass('ui-state-highlight');
+
+    // console.log("after:  " + $('.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today').html());
+  }
+
+
+
+}
 
 function submit_dates(){
 
@@ -144,6 +334,162 @@ function submit_dates(){
 </body>
 </html>
 
+<!-- 
+change: 
+
+ui-state-default ui-state-highlight
+
+to:
+
+ui-state-default
+
+change font color to red (readable but different from black)
 
 
 
+state directly above the calendar the date (Today's date is April 20th, 2015)
+
+make it so that you have to make at least one and at most 3 days that would be good for you
+to work. 
+
+ -->
+<!-- <a class="ui-state-default ui-state-highlight" href="#">13</a>
+
+<a class="ui-state-default ui-state-active" href="#">15</a> 
+
+<td class="  ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="3" data-year="2015"><a class="ui-state-default ui-state-highlight" href="#">13</a></td>
+  <a class="ui-state-default ui-state-highlight" href="#">13</a>
+</td>
+-->
+
+
+
+
+<!-- <td class="  ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="3" data-year="2015"><a class="ui-state-default ui-state-highlight" href="#">13</a></td>
+
+
+<td class=" ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="3" data-year="2015"><a class="ui-state-default ui-state-highlight ui-state-active ui-state-hover" href="#">13</a></td>
+
+//get today's date. 
+//find out if weekend or weekday
+//get parent
+//make the proper child
+//set the child up 
+//delete orig
+
+var parent = $('.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today').parent();
+$('.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today').remove();
+
+var temp_child = parent. -->
+
+<!--
+
+--------------------------------------
+
+  //$('a.ui-state-default').removeClass('ui-state-highlight');
+
+  //$("#today_element").find("a").css('color', 'red');
+
+
+
+
+  // var blah = $( '#datepicker' ).datepicker( "option", "dayNamesShort");
+
+  // console.log(blah);
+
+//<td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2015">
+
+//get today's date. 
+//find out if weekend or weekday
+//get parent
+//make the proper child
+//set the child up 
+//delete orig
+
+  //get the day
+  // 1 mon
+  // 2 tuesday
+  // 3 wednes
+  // 4 thrusday
+  // 5 friday
+  // 6 saturday
+  // 0 sun 
+
+  //$('#datepicker').datepicker('getDate').getDate();
+  // var date = $('#datepicker').datepicker('getDate');
+  // var day_number = date.getDate();
+  // var day = date.getDay(); //2 == tuesday
+  // var month = date.getMonth() ;
+  // var year = date.getFullYear();
+  // console.log("day_number is: " + day_number);  
+  // console.log("day is: " + day);
+  // console.log("month is: " + month);
+  // console.log("year is: " + year);
+  // var saturday = 6;
+  // var sunday = 0;
+
+  //get parent
+  //var parent = $('.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today').parent();
+
+
+  // var date2 = $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+  // console.log(date2);
+  // var day = date.toString().substr(0,3);
+  // var month = date;
+  // var year = date;
+  // console.log(date.toString().substr(0,3));
+  //console.log("day is: " + day);
+  //weekend
+//   if(day == saturday || day == sunday){
+
+//     var replacement = "<td class=' ui-datepicker-week-end ' data-handler='selectDay' data-event='click' data-month= " + month + " data-year=" + year + "><a class='ui-state-default' href='#'>"+day_number+"</a></td>";
+    
+//     //$('.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today').remove();
+
+//     $('.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today').replaceWith(replacement);
+
+//   }
+// //else, regular day
+//   else{
+//     //parent.append();
+
+//     // var replacement = "<td class= 'ui-datepicker-week-end' data-handler='selectDay' data-event='click' data-month="+month+" data-year="+year+"><a class='ui-state-default' href='#'>"+day_number+"</a></td>";
+
+//     var replacement = "<td class='' data-handler='selectDay' data-event='click' data-month="+month+" data-year="+year+
+//     "><a class='ui-state-default' href='#'>"+day_number+"</a></td>";
+
+//     $('.ui-datepicker-days-cell-over.ui-datepicker-current-day.ui-datepicker-today').replaceWith(replacement);
+//   }
+
+    // var parent = $('.ui-datepicker-today').parent();
+
+    // var temp_child = parent.
+
+  // $('#datepicker').datepicker("setDate", new Date(2015,3,20) );
+
+  // // $('#datepicker').datepicker('setDate');
+  // $('#datepicker').datepicker("setDate", new Date(2015,5,20) );
+
+  //$("#datepicker").datepicker("setDate", blah);
+
+            // blah = date;
+
+          // if(date1 == ""){
+          //  date1 = date;
+          //  $("#first").text(date);
+          //  console.log("date1 is: " + date1);
+          // }
+          // else if(date2 == ""){
+          //  date2 = date;
+          //  $("#second").text(date);
+          //  console.log("date2 is: " + date2);
+          // }
+          // else{
+          //  date3 = date;
+          //  $("#third").text(date);
+          //  console.log("date3 is: " + date3);
+          // }
+
+            //alert(date);
+
+  -->
